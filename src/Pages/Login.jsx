@@ -1,7 +1,12 @@
 
 import { NavLink } from 'react-router-dom';
+import useAuth from './../Hooks/useAuth';
 
 const Login = () => {
+
+    const { login } = useAuth()
+
+
     return (
         <div className='flex justify-center'>
             <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-900 dark:text-gray-100">

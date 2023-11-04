@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../Hooks/useAuth';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const Register = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [pic, setPic] = useState('');
+
+    const { passwordSignUp } = useAuth()
+
+    console.log(email, password, pic)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (password.length < 6) {
+            toast.error('Your password should have at least 6 characters or longer', {
+                duration: 1000,
+            });
+        }
+        else if (!/[A-Z]/.test(password)) {
+            toast.error('Your password should have at least one capital letter', {
+                duration: 1000,
+            });
+        }
+        else if (!/[!@#$%^&*]/.test(password)) {
+            toast.error('Your password should have at least one special character', {
+                duration: 1000,
+            });
+        }
+    }
+
     return (
         <div className='flex justify-center'>
             <div className="w-full  max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-900 dark:text-gray-100">
@@ -25,23 +54,30 @@ const Register = () => {
                 </div> */}
 
                 {/*  */}
-                <form className="space-y-8">
+                <form onSubmit={handleSubmit} className="space-y-8">
                     <div className="space-y-4">
+                        {/* profile pic */}
+                        < div className="space-y-2">
+                            <label className="block text-sm">Image</label>
+                            <input type="text" onChange={(e) => setPic(e.target.value)} name="pic" id="pic" placeholder="https://something.co" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required />
+                        </div>
+                        {/* email */}
                         <div className="space-y-2">
                             <label className="block text-sm">Email address</label>
-                            <input type="email" name="email" id="email" placeholder="leroy@jenkins.com" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required />
+                            <input type="email" onChange={(e) => setEmail(e.target.value)} name="email" id="email" placeholder="something@something.com" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required />
                         </div>
                         <div className="space-y-2">
                             <div className="flex justify-between">
                                 <label className="text-sm">Password</label>
                                 <a rel="noopener noreferrer" href="#" className="text-xs hover:underline dark:text-gray-400">Forgot password?</a>
                             </div>
-                            <input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required />
+                            <input type="password" onChange={(e) => setPassword(e.target.value)} name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required />
                         </div>
                     </div>
                     <button type="submit" className="btn bg-prim w-full ">Sign up</button>
                 </form>
             </div>
+            <Toaster />
         </div>
     );
 };
