@@ -57,7 +57,7 @@ const Register = () => {
             <div className="w-full  max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-900 dark:text-gray-100">
                 <h2 className="mb-3 text-3xl font-semibold text-center">Register your account</h2>
                 <p className="text-sm mb-5 text-center dark:text-gray-400">Already have an account?
-                    <NavLink to={'/login'} className="focus:underline text-prim hover:underline"> Sign in here</NavLink>
+                    <NavLink to={'/login'} className="focus:underline text-prim hover:underline"> Log in here</NavLink>
                 </p>
                 {/* <div className="my-6 space-y-4">
                     <button aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ri focus:ri dark:border-gray-400 focus:ri">

@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 
 const Navbar = () => {
 
+    const { logOut, user } = useAuth();
+    console.log(user)
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -27,16 +30,25 @@ const Navbar = () => {
 
                         <NavLink to={'/all-jobs'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn  btn-ghost'} >All Jobs</NavLink>
 
-                        <NavLink to={'/applied-jobs'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn  btn-ghost'}  >Applied Jobs</NavLink>
 
-                        <NavLink to={'/add-a-job'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn  btn-ghost'}  >Add A Job</NavLink>
+                        {
+                            user && <NavLink to={'/applied-jobs'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn  btn-ghost'}  >Applied Jobs</NavLink>
+                        }
 
-                        <NavLink to={'/my-jobs'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn  btn-ghost'}  >My Jobs</NavLink>
+                        {
+                            user && <NavLink to={'/add-a-job'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn  btn-ghost'}  >Add A Job</NavLink>
+
+                        }
+                        {
+                            user && <NavLink to={'/my-jobs'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn  btn-ghost'}  >My Jobs</NavLink>
+                        }
                     </ul>
                 </div>
                 <div className="navbar-end">
                     <a className="btn">Blogs</a>
-                    <a className="btn">Button</a>
+                    {
+                        user ? <button onClick={() => logOut()} className="btn btn-ghost bg-prim">Log Out</button> : <button className="btn btn-ghost bg-prim"><NavLink to={'/login'}>Log in</NavLink></button>
+                    }
                 </div>
             </div>
         </div>

@@ -11,9 +11,13 @@ const AuthProvider = ({ children }) => {
 
 
     // popup login
-    const popUpGoogle = (provider) => {
-        setLoading(true);
+    const googlePopUp = (provider) => {
+        setLoading(true)
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        provider.setCustomParameters({ prompt: 'select_account' });
+
         return signInWithPopup(auth, provider)
+
     }
 
     // password  Sign Up
@@ -66,7 +70,7 @@ const AuthProvider = ({ children }) => {
 
 
     const value = {
-        popUpGoogle,
+        googlePopUp,
         passwordSignUp,
         handleUpdateUser,
         logIn,
