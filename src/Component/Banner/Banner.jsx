@@ -3,8 +3,8 @@ import './banner.css'
 const Banner = () => {
     return (
         <div className='container mx-auto'>
-            <div className='banner py-10 lg:py-24 text-center mx-auto space-y-3'>
-                <h2 className='text-4xl font-bold text-white'>One million success stories. <br /><span className='text-prim'>Start yours today.</span></h2>
+            <div className=' py-10 lg:py-[20vh] text-center mx-auto space-y-3'>
+                <h2 className=' text-2xl lg:text-4xl font-bold text-white'>One million success stories. <br /><span className='text-prim'>Start yours today.</span></h2>
                 <p className='text-white'>Find 40,000+ Jobs, Employment & Career Opportunities</p>
                 <div className=''>
 
