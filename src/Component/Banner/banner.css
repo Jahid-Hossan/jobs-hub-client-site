@@ -1,0 +1,8 @@
+.banner {
+    min-height: 100%;
+    background-image: url(https://i.ibb.co/kDrL8hc/pexels-fauxels-3184291.jpg);
+    background-color: rgb(78, 78, 78);
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+}
