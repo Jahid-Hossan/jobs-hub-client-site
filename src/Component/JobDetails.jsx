@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const JobDetails = ({ job }) => {
     // console.log(Object.keys(job).join())
     console.log(job)
-    const { name,
+    const {
+        _id,
+        name,
         email,
         title,
         category,
@@ -31,7 +34,7 @@ const JobDetails = ({ job }) => {
             </div>
             <div className='space-y-2'>
                 <h2 className=' text-base lg:text-2xl pb-2 font-semibold lg:font-bold'>{salaryFrom}$ - {salaryTo}$</h2>
-                <button className='btn-sm   lg:btn-lg btn btn-ghost  w-full bg-prim'>View Details</button>
+                <button className='btn-sm   lg:btn-lg btn btn-ghost  w-full bg-prim'><Link to={`/details/${_id}`}>View Details</Link></button>
             </div>
         </div>
     );

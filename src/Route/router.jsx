@@ -22,7 +22,7 @@ const router = createBrowserRouter([
             {
                 path: '/details/:id',
                 element: <PrivetRoute><Details></Details></PrivetRoute>,
-                loader: ({ params }) => fetch(`https://tech-and-electronics-server-2q0uuz4tq-jahid-hossans-projects.vercel.app/products/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/listedJobs/${params.id}`)
             },
             {
                 path: '/add-a-job',
