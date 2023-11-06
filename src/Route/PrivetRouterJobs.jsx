@@ -1,8 +1,9 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import { toast } from "react-hot-toast";
 import { Oval } from "react-loader-spinner";
 
-const PrivetRoute = ({ children }) => {
+const PrivetRouterJobs = ({ children }) => {
 
     const { user, loading } = useAuth();
 
@@ -27,10 +28,13 @@ const PrivetRoute = ({ children }) => {
     }
 
     if (!user) {
-        return <Navigate state={location.pathname} to='/login' />;
+        toast.error("You need to login first to view details", {
+            duration: 2000,
+        })
+        return < Navigate state={location.pathname} to='/login' />
     }
 
     return children;
 };
 
-export default PrivetRoute;
+export default PrivetRouterJobs;

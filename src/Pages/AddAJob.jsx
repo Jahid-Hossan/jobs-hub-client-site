@@ -101,7 +101,7 @@ const AddAJob = () => {
                                 <div className="col-span-full sm:col-span-1">
                                     <label className="text-sm block">Application Deadline</label>
                                     {/* <input name="date" type="date" /> */}
-                                    <DatePicker className="w-full rounded-md focus:ring focus:ri focus:ri mt-1 dark:border-gray-700 dark:text-gray-900" dateFormat="yyyy/MM/dd" selected={startDate} onChange={(date) => setApplicationDeadline(date)} />
+                                    <DatePicker className="w-full rounded-md focus:ring focus:ri focus:ri mt-1 dark:border-gray-700 dark:text-gray-900" selected={startDate} onChange={(date) => setApplicationDeadline(date)} />
                                 </div>
                                 {/* job applicants number */}
                                 <div className="col-span-full sm:col-span-1">

@@ -7,6 +7,8 @@ import Login from "../Pages/Login";
 import AddAJob from "../Pages/AddAJob";
 import PrivetRoute from "./PrivetRoute";
 import Details from "../Pages/Details";
+import AllJobs from "../Pages/AllJobs";
+import PrivetRouterJobs from "./PrivetRouterJobs";
 
 
 const router = createBrowserRouter([
@@ -21,12 +23,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                element: <PrivetRoute><Details></Details></PrivetRoute>,
+                element: <PrivetRouterJobs><Details></Details></PrivetRouterJobs>,
                 loader: ({ params }) => fetch(`http://localhost:5000/listedJobs/${params.id}`)
             },
             {
+                path: '/all-jobs',
+                element: <AllJobs />
+            },
+            {
                 path: '/add-a-job',
-                element: <AddAJob />
+                element: <PrivetRoute><AddAJob /></PrivetRoute>
             },
             {
                 path: '/login',

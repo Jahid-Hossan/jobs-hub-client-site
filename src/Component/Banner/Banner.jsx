@@ -1,6 +1,6 @@
 import './banner.css'
 
-const Banner = () => {
+const Banner = ({ handleSearch }) => {
     return (
         <div className='container mx-auto'>
             <div className=' py-10 lg:py-[20vh] text-center mx-auto space-y-3'>
@@ -8,8 +8,10 @@ const Banner = () => {
                 <p className='text-white'>Find 40,000+ Jobs, Employment & Career Opportunities</p>
                 <div className=''>
 
-                    <input className="w-2/3 rounded-l-full  py-3" type="text" placeholder='Enter job title...' />
-                    <button className=' py-3 px-6 rounded-r-full bg-prim'>Search</button>
+                    <form onSubmit={handleSearch} action="">
+                        <input className="w-2/3 rounded-l-full  py-3" type="text" name='name' placeholder='Enter job title...' />
+                        <button type='submit' className=' py-3 px-6 rounded-r-full bg-prim'>Search</button>
+                    </form>
 
                 </div>
             </div>

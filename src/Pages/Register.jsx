@@ -104,7 +104,6 @@ const Register = () => {
                     <button type="submit" className="btn bg-prim w-full ">Sign up</button>
                 </form>
             </div>
-            <Toaster />
         </div>
     );
 };

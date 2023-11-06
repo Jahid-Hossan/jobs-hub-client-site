@@ -2,11 +2,17 @@ import { AiFillGooglePlusCircle, AiFillLinkedin, AiFillTwitterCircle, AiOutlineL
 import { FaFacebook } from 'react-icons/fa'
 import { Link, useLoaderData } from 'react-router-dom';
 import Banner from '../Component/BannerDetails/BannerDetails';
+import useAuth from '../Hooks/useAuth';
+import useAxios from '../Hooks/useAxios';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 const Details = () => {
 
+    const axios = useAxios();
+    const { user } = useAuth()
     const job = useLoaderData()
-    console.log(job)
+    console.log(user)
 
     const {
         _id,
@@ -22,6 +28,95 @@ const Details = () => {
         applicantNo,
         image,
     } = job;
+
+
+
+    const handleApply = (e) => {
+        e.preventDefault();
+        console.log(e.target.name.value)
+        const form = e.target;
+        const applicantName = form.name.value;
+        const applicantEmail = form.email.value;
+        const cv = form.cv.value;
+
+        const data = {
+            name,
+            email,
+            applicantName,
+            applicantEmail,
+            title,
+            category,
+            salaryFrom,
+            salaryTo,
+            startDate,
+            deadline,
+            description,
+            applicantNo,
+            image,
+            cv
+        }
+
+        const updateApplicantNo = {
+            applicantNo: 1
+        }
+
+        const deadlineTime = new Date(deadline).getTime();
+        const timestamp = Date.now();
+
+        const remainingDeadline = deadlineTime - timestamp;
+        console.log(remainingDeadline)
+
+        // const days = remainingDeadline / (24 * 60 * 60 * 1000);
+
+
+        if (email === applicantEmail) {
+            return toast.error('You can not apply your won posted job')
+        } else if (!remainingDeadline) {
+            return toast.error('Deadline is over')
+        } else {
+            const url = '/applied';
+            axios.post(url, data)
+                .then(res => {
+                    console.log(res.data.insertedId)
+                    if (res.data.insertedId) {
+                        axios.patch(`/listedJobs/${_id}`, updateApplicantNo)
+                            .then(res => {
+                                console.log(res.data.modifiedCount)
+                            })
+                            .catch(err => {
+                                console.log(err)
+                            })
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            console.log(data)
+        }
+    }
+
+    // const deadlineTime = new Date(deadline).getTime();
+    // const timestamp = Date.now();
+
+    // const remainingDeadline = deadlineTime - timestamp;
+    // console.log(remainingDeadline)
+
+    // // const milliseconds = 100000000; // Replace this with your desired number of milliseconds
+    // const days = remainingDeadline / (24 * 60 * 60 * 1000);
+
+    // console.log("Days:", days);
+
+    // const currentDateFromTimestamp = new Date(timestamp);
+    // console.log(currentDateFromTimestamp.toLocaleDateString())
+
+    // // const milisecond = deadline.getTime()
+    // // console.log(milisecond)
+
+
+
+
+    // console.log(milliseconds);
+
 
     return (
         <div className='container mx-auto'>
@@ -42,7 +137,45 @@ const Details = () => {
                     {/* <p className='bg-prim inline  px-2 py-1 text-white font-semibold rounded'>{category}</p> */}
                     <p className=' w-5 h-5 inline mr-1.5'>{applicantNo} People Applied</p>
                     <h2 className=' text-base lg:text-2xl pb-1 font-semibold lg:font-bold'>{salaryFrom}$ - {salaryTo}$</h2>
-                    <button className='btn-sm   lg:btn-lg btn btn-ghost   bg-prim'>Apply Now</button>
+                    <button className='btn-sm   lg:btn-lg btn btn-ghost   bg-prim' onClick={() => document.getElementById('my_modal_5').showModal()}>Apply Now</button>
+
+                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                    {/* <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>open modal</button> */}
+                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                        <div className="modal-box">
+                            <h3 className="font-bold text-lg">Application for <span className='text-prim'>{title}</span></h3>
+                            {/* <h3 className="font-bold text-lg">{user.displayName}</h3>
+                            <p>{user.email}</p> */}
+
+                            <form onSubmit={handleApply} action="">
+                                <div className='space-y-2'>
+                                    <div className="col-span-full ">
+                                        <label className="text-sm">Name</label>
+                                        <input defaultValue={user.displayName} name='name' type="text" placeholder="Name" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
+                                    </div>
+                                    {/* email */}
+                                    <div className="col-span-full">
+                                        <label className="text-sm">Email</label>
+                                        <input defaultValue={user.email} type="text" name='email' placeholder="email" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
+                                    </div>
+                                    <div className="col-span-full ">
+                                        <label className="text-sm">CV Url</label>
+                                        <input name="cv" id="username" type="text" placeholder="CV Url" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
+                                    </div>
+
+                                </div>
+                                <button type='submit' className='btn btn-sm bg-prim  mt-2'>Apply</button>
+                            </form>
+
+                            <div className="modal-action">
+                                <form method="dialog">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+
                 </div>
                 <div className='space-y-2 grid-cols-1 lg:col-span-2'>
                     <div className=" ">

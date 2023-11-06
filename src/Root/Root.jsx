@@ -2,6 +2,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './../Component/Navbar';
 import { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 const Root = () => {
 
@@ -27,6 +28,7 @@ const Root = () => {
         <div>
             <Navbar />
             <Outlet />
+            <Toaster />
         </div>
     );
 };

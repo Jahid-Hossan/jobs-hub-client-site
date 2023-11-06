@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import useAuth from './../Hooks/useAuth';
 import { FcGoogle } from "react-icons/fc"
 import { GoogleAuthProvider } from 'firebase/auth';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const JobDetails = ({ job }) => {
     // console.log(Object.keys(job).join())
-    console.log(job)
+    // console.log(job)
     const {
         _id,
         name,
