@@ -1,6 +1,6 @@
 import { AiFillGooglePlusCircle, AiFillLinkedin, AiFillTwitterCircle, AiOutlineLink } from 'react-icons/ai'
 import { FaFacebook } from 'react-icons/fa'
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, Navigate, useLoaderData } from 'react-router-dom';
 import Banner from '../Component/BannerDetails/BannerDetails';
 import useAuth from '../Hooks/useAuth';
 import useAxios from '../Hooks/useAxios';
@@ -71,7 +71,7 @@ const Details = () => {
 
         if (email === applicantEmail) {
             return toast.error('You can not apply your won posted job')
-        } else if (!remainingDeadline) {
+        } else if (remainingDeadline <= 0) {
             return toast.error('Deadline is over')
         } else {
             const url = '/applied';
@@ -82,6 +82,11 @@ const Details = () => {
                         axios.patch(`/listedJobs/${_id}`, updateApplicantNo)
                             .then(res => {
                                 console.log(res.data.modifiedCount)
+                                if (res.data.modifiedCount) {
+                                    toast.success('Application Successful')
+                                    // return <Navigate to={`/listedJobs`} />;
+
+                                }
                             })
                             .catch(err => {
                                 console.log(err)
@@ -166,10 +171,11 @@ const Details = () => {
                                 </div>
                                 <button type='submit' className='btn btn-sm bg-prim  mt-2'>Apply</button>
                             </form>
-
+                            <form method="dialog" className="modal-backdrop">
+                                <button>close</button>
+                            </form>
                             <div className="modal-action">
                                 <form method="dialog">
-                                    {/* if there is a button in form, it will close the modal */}
                                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                 </form>
                             </div>

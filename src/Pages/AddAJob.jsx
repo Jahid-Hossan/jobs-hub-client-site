@@ -3,21 +3,24 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from './../Hooks/useAuth';
+import useAxios from "../Hooks/useAxios";
+import toast from "react-hot-toast";
 
 const AddAJob = () => {
 
     const { user } = useAuth()
-
-    const [startDate, setStartDate] = useState(new Date())
+    const axios = useAxios();
+    const [postedDate, setPostedDate] = useState(new Date())
     const [applicationDeadline, setApplicationDeadline] = useState(new Date())
 
-    console.log(user.displayName)
+    // console.log(user.displayName)
 
     const handleAddJob = e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
+        const title = form.title.value;
         const category = form.category.value;
         const salaryFrom = form.salaryFrom.value;
         const salaryTo = form.salaryTo.value;
@@ -25,21 +28,45 @@ const AddAJob = () => {
         const applicantNo = form.applicantNo.value;
         const image = form.image.value;
         const deadline = applicationDeadline.toLocaleDateString();
-        const postDate = startDate.toLocaleDateString();
-        // const date = form.date.value;
+        const startDate = postedDate.toLocaleDateString();
 
-        // console.log(date)
-        console.log(
+        const newJob = {
             name,
             email,
+            title,
             category,
             salaryFrom,
             salaryTo,
-            startDate,
-            deadline,
             description,
             applicantNo,
             image,
+            deadline,
+            startDate
+        }
+
+        axios.post('/listedJobs', newJob)
+            .then(res => {
+                console.log(res.data.insertedId)
+                if (res.data.insertedId) {
+                    toast.success('Job posted successfully')
+                    form.reset()
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        console.log(
+            // name,
+            // email,
+            // category,
+            // salaryFrom,
+            // salaryTo,
+            // startDate,
+            // deadline,
+            // description,
+            // applicantNo,
+            // image,
         )
     }
 
@@ -65,8 +92,13 @@ const AddAJob = () => {
                                     <label className="text-sm">Email</label>
                                     <input defaultValue={user.email} type="text" name='email' placeholder="email" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
                                 </div>
+                                {/* job title */}
+                                <div className="col-span-full sm:col-span-2">
+                                    <label className="text-sm">Job Title</label>
+                                    <input type="text" name='title' placeholder="Job Title" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
+                                </div>
                                 {/* job category */}
-                                <div className="col-span-full sm:col-span-4">
+                                <div className="col-span-full sm:col-span-2">
                                     <label className="text-sm">Job Category</label>
                                     {/* <input id="email" type="email" placeholder="Email" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" /> */}
                                     <select name="category" id="" className='w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900' required>
@@ -80,11 +112,11 @@ const AddAJob = () => {
                                 {/* salary range */}
                                 <div className="col-span-full sm:col-span-1">
                                     <label className="text-sm">Salary Range From</label>
-                                    <input name='salaryFrom' id="address" type="text" placeholder="From 0$" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
+                                    <input name='salaryFrom' id="address" type="number" placeholder="From 0$" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
                                 </div>
                                 <div className="col-span-full sm:col-span-1">
                                     <label className="text-sm">To</label>
-                                    <input name='salaryTo' id="address" type="text" placeholder="To 0$" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
+                                    <input name='salaryTo' id="address" type="number" placeholder="To 0$" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
                                 </div>
                                 {/* job description */}
                                 <div className="col-span-full sm:col-span-3">
@@ -94,14 +126,14 @@ const AddAJob = () => {
                                 {/* job posting date */}
                                 <div className="col-span-full sm:col-span-1">
                                     <label className="text-sm block">Job Posting Date</label>
-                                    <DatePicker className="w-full rounded-md focus:ring focus:ri focus:ri mt-1 dark:border-gray-700 dark:text-gray-900" selected={startDate} onChange={(date) => setStartDate(date)} />
+                                    <DatePicker className="w-full rounded-md focus:ring focus:ri focus:ri mt-1 dark:border-gray-700 dark:text-gray-900" selected={postedDate} onChange={(date) => setPostedDate(date)} />
                                     {/* <input id="state" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" /> */}
                                 </div>
                                 {/* application deadline */}
                                 <div className="col-span-full sm:col-span-1">
                                     <label className="text-sm block">Application Deadline</label>
                                     {/* <input name="date" type="date" /> */}
-                                    <DatePicker className="w-full rounded-md focus:ring focus:ri focus:ri mt-1 dark:border-gray-700 dark:text-gray-900" selected={startDate} onChange={(date) => setApplicationDeadline(date)} />
+                                    <DatePicker className="w-full rounded-md focus:ring focus:ri focus:ri mt-1 dark:border-gray-700 dark:text-gray-900" selected={applicationDeadline} onChange={(date) => setApplicationDeadline(date)} />
                                 </div>
                                 {/* job applicants number */}
                                 <div className="col-span-full sm:col-span-1">
