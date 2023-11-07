@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 
 const JobDetails = ({ job }) => {
@@ -32,9 +32,9 @@ const JobDetails = ({ job }) => {
                 <p className='bg-prim inline  px-2 py-1 text-white font-semibold rounded'>{category}</p>
                 <p className='inline ml-3'>{applicantNo} People Applied</p>
             </div>
-            <div className='space-y-2'>
+            <div className='space-y-2 text-right'>
                 <h2 className=' text-base lg:text-2xl pb-2 font-semibold lg:font-bold'>{salaryFrom}$ - {salaryTo}$</h2>
-                <button className='btn-sm   lg:btn-lg btn btn-ghost  w-full bg-prim'><Link to={`/details/${_id}`}>View Details</Link></button>
+                <button className='btn-sm   lg:btn-lg  btn btn-ghost   bg-prim'><Link to={`/details/${_id}`}>View Details</Link></button>
             </div>
         </div>
     );
