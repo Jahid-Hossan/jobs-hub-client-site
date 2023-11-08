@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './../Component/Navbar';
 import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
+import Footer from '../Component/Footer';
 
 const Root = () => {
 
@@ -15,7 +16,7 @@ const Root = () => {
         if (location.pathname === "/") {
             document.title = `Jobs Hub-home`;
         } else {
-            document.title = `Jobs Hub ${location.pathname.replace("/", "-")}`;
+            document.title = `Jobs Hub ${location.pathname.replace("/", " | ")}`;
         }
 
         if (location.state) {
@@ -28,6 +29,7 @@ const Root = () => {
         <div>
             <Navbar />
             <Outlet />
+            <Footer />
             <Toaster />
         </div>
     );

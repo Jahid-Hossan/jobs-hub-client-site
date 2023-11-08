@@ -1,6 +1,8 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config';
+import useAxios from '../Hooks/useAxios';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
@@ -8,6 +10,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    // const axios = useAxios()
 
 
     // popup login
@@ -40,6 +43,7 @@ const AuthProvider = ({ children }) => {
 
     // 
     const logOut = () => {
+        setLoading(true)
         return signOut(auth)
 
     }
@@ -47,21 +51,21 @@ const AuthProvider = ({ children }) => {
     // state change
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            // const userEmail = currentUser?.email || user?.email;
-            // const loggedEmail = { email: userEmail }
+            const userEmail = currentUser?.email || user?.email;
+            const loggedEmail = { email: userEmail }
             setUser(currentUser)
             setLoading(false);
-            // if (currentUser) {
-            //     axios.post('http://localhost:5000/jwt', loggedEmail, { withCredentials: true })
-            //         .then(res => {
-            //             console.log(res.data)
-            //         })
-            // } else {
-            //     axios.post('http://localhost:5000/logout', loggedEmail, { withCredentials: true })
-            //         .then(res => {
-            //             console.log(res.data)
-            //         })
-            // }
+            if (currentUser) {
+                axios.post('http://localhost:5000/jwt', loggedEmail, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                    })
+            } else {
+                axios.post('http://localhost:5000/jwtLogout', loggedEmail, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                    })
+            }
         })
         return () => {
             unSubscribe()

@@ -28,9 +28,7 @@ const PrivetRouterJobs = ({ children }) => {
     }
 
     if (!user) {
-        toast.error("You need to login first to view details", {
-            duration: 2000,
-        })
+        toast.error("You need to login first to view details")
         return < Navigate state={location.pathname} to='/login' />
     }
 

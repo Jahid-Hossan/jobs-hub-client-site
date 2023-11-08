@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import useAuth from './../Hooks/useAuth';
 import useAxios from "../Hooks/useAxios";
 import toast from "react-hot-toast";
+import PostAJobBanner from "../Component/PostJob/PostAJobBanner";
 
 const AddAJob = () => {
 
@@ -71,10 +72,15 @@ const AddAJob = () => {
     }
 
     return (
-        <div>
-            this is add a job section
+        <div className="container mx-auto">
+            <div>
+                <PostAJobBanner></PostAJobBanner>
+            </div>
             <div>
                 <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
+                    <div className="my-5 lg:my-10">
+                        <h2 className=' text-2xl lg:text-6xl text-center font-bold '>Job Information</h2>
+                    </div>
                     <form onSubmit={handleAddJob} action="" className="container flex flex-col mx-auto space-y-12">
                         <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
                             {/* <div className="space-y-2 col-span-full lg:col-span-1">

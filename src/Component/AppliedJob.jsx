@@ -26,10 +26,6 @@ const AppliedJob = ({ appliedJob }) => {
                 </small>
             </div>
 
-            {/* <div className='col-span-3 p-2'>
-                <h2 className="text-base font-bold  inline rounded-md">Job Description</h2>
-                <p className=''>{description}</p>
-            </div> */}
 
             <div className="col-span-3">
                 <div className=" ">
@@ -46,11 +42,7 @@ const AppliedJob = ({ appliedJob }) => {
 
                 </div>
             </div>
-            {/* <div className="" >
-                <div className="">
 
-                </div>
-            </div> */}
         </div >
     );
 };

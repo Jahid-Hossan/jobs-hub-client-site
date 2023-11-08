@@ -5,6 +5,8 @@ import 'react-tabs/style/react-tabs.css';
 import { useEffect, useState } from 'react';
 import useAxios from './../Hooks/useAxios';
 import JobDetails from './../Component/JobDetails';
+import HrExpert from '../Component/HrExpert';
+import Contact from '../Component/Contact';
 
 
 const Home = () => {
@@ -116,6 +118,12 @@ const Home = () => {
                         </TabPanel>
                     </Tabs>
                 </div>
+            </div>
+            <div>
+                <HrExpert></HrExpert>
+            </div>
+            <div>
+                <Contact></Contact>
             </div>
         </div>
     );

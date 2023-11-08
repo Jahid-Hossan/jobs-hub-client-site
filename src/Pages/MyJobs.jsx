@@ -13,7 +13,7 @@ const MyJobs = () => {
     console.log(user.email)
 
     useEffect(() => {
-        axios.get(url)
+        axios.get(url, { withCredentials: true })
             .then(res => {
                 setMyJobs(res.data)
             })

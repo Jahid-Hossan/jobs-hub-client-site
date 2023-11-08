@@ -1,10 +1,9 @@
 import { AiFillGooglePlusCircle, AiFillLinkedin, AiFillTwitterCircle, AiOutlineLink } from 'react-icons/ai'
 import { FaFacebook } from 'react-icons/fa'
-import { Link, Navigate, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import Banner from '../Component/BannerDetails/BannerDetails';
 import useAuth from '../Hooks/useAuth';
 import useAxios from '../Hooks/useAxios';
-import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 const Details = () => {
@@ -28,7 +27,6 @@ const Details = () => {
         applicantNo,
         image,
     } = job;
-
 
 
     const handleApply = (e) => {
