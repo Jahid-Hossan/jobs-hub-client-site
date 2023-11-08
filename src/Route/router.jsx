@@ -17,7 +17,7 @@ import Blogs from "../Pages/Blogs";
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: '/home',
         element: <Root />,
         errorElement: <ErrorPage></ErrorPage>,
         children: [
