@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import useAxios from '../Hooks/useAxios';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
-const MyJob = ({ myJob }) => {
+const MyJob = ({ myJob, myJobs, setMyJobs }) => {
     const [remove, setRemove] = useState(false)
     const [removeId, setRemoveId] = useState('')
     // console.log(Object.keys(myJob).join())
@@ -11,9 +12,9 @@ const MyJob = ({ myJob }) => {
     const { _id, name, title, email, category, salaryFrom, salaryTo, startDate, deadline, description, applicantNo, image } = myJob;
 
 
-    const handleUpdate = (_id) => {
-        console.log(_id)
-    }
+    // const handleUpdate = (_id) => {
+    //     console.log(_id)
+    // }
 
 
     const handleDelete = (_id) => {
@@ -38,6 +39,8 @@ const MyJob = ({ myJob }) => {
 
     }
 
+    console.log(myJobs)
+
     const url = `/listedJobs/${removeId}`
 
     if (remove) {
@@ -47,7 +50,15 @@ const MyJob = ({ myJob }) => {
                 console.log(res.data.deletedCount)
                 if (res.data.deletedCount > 0) {
                     toast.success('Job deleted successfully')
+
+                    const remaining = myJobs.filter(job => job._id !== removeId)
+                    console.log(remaining)
+                    setMyJobs(remaining)
+
                 }
+
+
+
             })
             .catch(err => {
                 console.log(err)
@@ -84,8 +95,8 @@ const MyJob = ({ myJob }) => {
                     </div>
                 </div>
 
-                <div className='col-span-3  space-y-3'>
-                    <button onClick={() => handleUpdate(_id)} className='btn btn- hover:bg-prim border-prim border-2 text-black  w-full'>Update</button><br />
+                <div className='col-span-3  space-y-3'><Link to={`/my-jobs/${_id}`}>
+                    <button className='btn btn- hover:bg-prim border-prim border-2 text-black  w-full'>Update</button></Link><br />
                     <button onClick={() => handleDelete(_id)} className='btn btn- hover:bg-prim border-prim border-2 text-black  w-full'>Delete</button>
                 </div>
 
