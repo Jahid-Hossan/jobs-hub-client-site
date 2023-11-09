@@ -6,31 +6,31 @@ import { useEffect } from "react";
 
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'https://jobs-hub-server.vercel.app',
     withCredentials: true
 })
 
 const useAxios = () => {
 
-    // const { logOut } = useAuth()
-    // const navigate = useNavigate();
+    const { logOut } = useAuth()
+    const navigate = useNavigate();
 
 
 
-    // useEffect(() => {
-    //     instance.interceptors.response.use(res => {
-    //         return res;
-    //     }, error => {
-    //         console.log(error.response)
-    //         if (error.response.status === 401 || error.response.status === 403) {
-    //             logOut()
-    //                 .then(() => {
-    //                     navigate('/login')
-    //                 })
-    //                 .catch(error => console.log(error))
-    //         }
-    //     })
-    // }, [])
+    useEffect(() => {
+        instance.interceptors.response.use(res => {
+            return res;
+        }, error => {
+            console.log(error.response)
+            if (error.response.status === 401 || error.response.status === 403) {
+                logOut()
+                    .then(() => {
+                        navigate('/login')
+                    })
+                    .catch(error => console.log(error))
+            }
+        })
+    }, [])
 
 
 

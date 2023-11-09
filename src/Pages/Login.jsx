@@ -17,7 +17,7 @@ const Login = () => {
                 toast.success('Log in successful', {
                     duration: 2000,
                 })
-                // navigate(location?.state ? location.state : '/home')
+                navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
                 toast.error(`${err}`, {
@@ -46,7 +46,7 @@ const Login = () => {
         logIn(email, password)
             .then(res => {
                 toast.success('Login Successful')
-                // navigate(location?.state ? location.state : '/home')
+                navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
                 toast.error(`${err.code}`)

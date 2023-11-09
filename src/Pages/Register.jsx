@@ -40,7 +40,7 @@ const Register = () => {
                         toast.success('Register Successful', {
                             duration: 1000,
                         });
-                        // navigate(location?.state ? location.state : '/home')
+                        navigate(location?.state ? location.state : '/')
                     })
             })
             .catch(err => {

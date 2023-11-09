@@ -14,7 +14,7 @@ const Root = () => {
     useEffect(() => {
 
         if (location.pathname === "/") {
-            document.title = `Jobs Hub-home`;
+            document.title = `Jobs Hub | home`;
         } else {
             document.title = `Jobs Hub ${location.pathname.replace("/", " | ")}`;
         }

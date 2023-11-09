@@ -17,18 +17,18 @@ import Blogs from "../Pages/Blogs";
 
 const router = createBrowserRouter([
     {
-        path: '/home',
+        path: '/',
         element: <Root />,
         errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
-                path: '/home',
+                path: '/',
                 element: <Home />
             },
             {
                 path: '/details/:id',
                 element: <PrivetRouterJobs><Details></Details></PrivetRouterJobs>,
-                loader: ({ params }) => fetch(`http://localhost:5000/listedJobs/${params.id}`)
+                loader: ({ params }) => fetch(`https://jobs-hub-server.vercel.app/listedJobs/${params.id}`)
             },
             {
                 path: '/all-jobs',
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
             {
                 path: '/my-jobs/:id',
                 element: <PrivetRoute><UpdateJob></UpdateJob></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/listedJobs/${params.id}`)
+                loader: ({ params }) => fetch(`https://jobs-hub-server.vercel.app/listedJobs/${params.id}`)
             },
             {
                 path: '/blogs',

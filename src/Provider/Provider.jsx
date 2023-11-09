@@ -56,12 +56,12 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
             setLoading(false);
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', loggedEmail, { withCredentials: true })
+                axios.post('https://jobs-hub-server.vercel.app/jwt', loggedEmail, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
                     })
             } else {
-                axios.post('http://localhost:5000/jwtLogout', loggedEmail, { withCredentials: true })
+                axios.post('https://jobs-hub-server.vercel.app/jwtLogout', loggedEmail, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
                     })

@@ -40,7 +40,7 @@ const AppliedJobs = () => {
         <div className='container mx-auto px-5 my-10'>
             <div>
                 <div className='flex justify-between items-center'>
-                    <div className="w-full lg:w-2/12">
+                    <div className="w-8/12 lg:w-2/12">
                         <label className="text-sm">Filter</label>
                         <select onChange={(e) => setCategory(e.target.value)} name="category" id="" className='w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900' required>
                             <option disabled selected value='' >Select Category</option>

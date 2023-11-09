@@ -18,7 +18,7 @@ const Navbar = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
 
-                            <NavLink to={'/home'} className={({ isActive }) => isActive ? 'btn btn-sm lg:btn-md btn-ghost bg-prim' : 'btn btn-sm lg:btn-md hover:bg-prim btn-ghost'} >Home</NavLink>
+                            <NavLink to={'/'} className={({ isActive }) => isActive ? 'btn btn-sm lg:btn-md btn-ghost bg-prim' : 'btn btn-sm lg:btn-md hover:bg-prim btn-ghost'} >Home</NavLink>
 
                             <NavLink to={'/all-jobs'} className={({ isActive }) => isActive ? 'btn btn-sm lg:btn-md btn-ghost bg-prim' : 'btn btn-sm lg:btn-md hover:bg-prim btn-ghost'} >All Jobs</NavLink>
 
@@ -44,7 +44,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal gap-1.5 px-1">
-                        <NavLink to={'/home'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn hover:bg-prim btn-ghost'} >Home</NavLink>
+                        <NavLink to={'/'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn hover:bg-prim btn-ghost'} >Home</NavLink>
 
                         <NavLink to={'/all-jobs'} className={({ isActive }) => isActive ? 'btn  btn-ghost bg-prim' : 'btn hover:bg-prim btn-ghost'} >All Jobs</NavLink>
 
