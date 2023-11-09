@@ -1,13 +1,9 @@
-import React from 'react';
+
 
 const Contact = () => {
     return (
-        <div className='container mx-auto'>
-            {/*
-  Heads up! 👋
+        <div className=' container mx-auto'>
 
-  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
-*/}
 
             <section>
                 <div className=" px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-10">
@@ -26,7 +22,7 @@ const Contact = () => {
 
                             <a
                                 href="#"
-                                className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
+                                className="mt-8 inline-block rounded bg-teal-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-teal-700 focus:outline-none focus:ring focus:ring-yellow-400"
                             >
                                 Get Started Today
                             </a>
@@ -233,3 +229,11 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+
+
+
+
+
+

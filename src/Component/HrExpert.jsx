@@ -3,7 +3,7 @@
 const HrExpert = () => {
     return (
         <div>
-            <div className="container mt-24 mx-auto md:px-6">
+            <div className="container py-10  sm:py-16 lg:py-24 mx-auto md:px-6">
                 <section className=" text-center">
                     <h2 className="mb-12 text-3xl font-bold">
                         Meet Our <u className="text-primary dark:text-primary-400">Expert</u>

@@ -5,6 +5,7 @@ import useAuth from './../Hooks/useAuth';
 import useAxios from "../Hooks/useAxios";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 const UpdateJob = () => {
 
@@ -81,16 +82,22 @@ const UpdateJob = () => {
     }
 
     return (
-        <div>
-            this is add a job section
+        <div className="container mx-auto">
+            <div>
+                <Player
+                    src='https://lottie.host/e8c10db4-cab4-48b1-96f3-7abc48e2b669/0uUazX0iAR.json'
+                    className="player"
+                    loop
+                    autoplay
+                    style={{ height: '300px', width: '300px' }}
+                />
+                <h2 className='text-2xl md:text-5xl text-center mt-5 lg:my-5 font-bold'>Update Your job details</h2>
+            </div>
             <div>
                 <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
                     <form onSubmit={handleAddJob} action="" className="container flex flex-col mx-auto space-y-12">
                         <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
-                            {/* <div className="space-y-2 col-span-full lg:col-span-1">
-                                <p className="font-medium">Personal Inormation</p>
-                                <p className="text-xs">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci fuga autem eum!</p>
-                            </div> */}
+
                             <div className="grid grid-cols-6 gap-4 col-span-full ">
                                 {/* name */}
                                 <div className="col-span-full sm:col-span-3">
@@ -110,7 +117,7 @@ const UpdateJob = () => {
                                 {/* job category */}
                                 <div className="col-span-full sm:col-span-2">
                                     <label className="text-sm">Job Category</label>
-                                    {/* <input id="email" type="email" placeholder="Email" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" /> */}
+
                                     <select name="category" defaultValue={job.category} id="" className='w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900' required>
                                         <option value="">Select Category</option>
                                         <option value="On Site">On Site</option>
@@ -137,12 +144,12 @@ const UpdateJob = () => {
                                 <div className="col-span-full sm:col-span-1">
                                     <label className="text-sm block">Job Posting Date</label>
                                     <DatePicker defaultValue={job.startDate} className="w-full rounded-md focus:ring focus:ri focus:ri mt-1 dark:border-gray-700 dark:text-gray-900" selected={postedDate} onChange={(date) => setPostedDate(date)} />
-                                    {/* <input id="state" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" /> */}
+
                                 </div>
                                 {/* application deadline */}
                                 <div className="col-span-full sm:col-span-1">
                                     <label className="text-sm block">Application Deadline</label>
-                                    {/* <input name="date" type="date" /> */}
+
                                     <DatePicker defaultValue={job.deadline} className="w-full rounded-md focus:ring focus:ri focus:ri mt-1 dark:border-gray-700 dark:text-gray-900" selected={applicationDeadline} onChange={(date) => setApplicationDeadline(date)} />
                                 </div>
                                 {/* job applicants number */}
@@ -155,15 +162,9 @@ const UpdateJob = () => {
                                     <label className="text-sm">Photo Url</label>
                                     <input name="image" defaultValue={job.image} id="username" type="text" placeholder="Photo Url" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
                                 </div>
-                                {/* photo url */}
-                                {/* <div className="col-span-full">
-                                    <label className="text-sm">Photo Url</label>
-                                    <div className="flex items-center space-x-2">
-                                        <img src="https://source.unsplash.com/30x30/?random" alt="" className="w-10 h-10 rounded-full dark:bg-gray-500 dark:bg-gray-700" />
-                                        <button type="button" className="px-4 py-2 border rounded-md dark:border-gray-100">Change</button>
-                                    </div>
-                                </div> */}
-                                <button className="btn w-full bg-prim" type="submit">Update</button>
+
+
+                                <button className="btn w-full col-span-3 bg-prim" type="submit">Update</button>
 
                             </div>
                         </fieldset>

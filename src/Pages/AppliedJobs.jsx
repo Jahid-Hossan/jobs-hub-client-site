@@ -4,6 +4,7 @@ import useAxios from '../Hooks/useAxios';
 import AppliedJob from '../Component/AppliedJob';
 import { usePDF } from 'react-to-pdf';
 import { FaDownload } from 'react-icons/fa';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const AppliedJobs = () => {
     const [appliedJobs, setAppliedJobs] = useState([])
@@ -40,7 +41,7 @@ const AppliedJobs = () => {
         <div className='container mx-auto px-5 my-10'>
             <div>
                 <div className='flex justify-between items-center'>
-                    <div className="w-8/12 lg:w-2/12">
+                    <div className="w-6/12 lg:w-2/12">
                         <label className="text-sm">Filter</label>
                         <select onChange={(e) => setCategory(e.target.value)} name="category" id="" className='w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900' required>
                             <option disabled selected value='' >Select Category</option>
@@ -55,12 +56,26 @@ const AppliedJobs = () => {
                 </div>
                 <div ref={targetRef}>
 
-                    <div className=' my-10 space-y-3'>
+                    <div className=' my-10 space-y-5'>
                         {
-                            appliedJobs?.map(appliedJob => <AppliedJob
-                                key={appliedJob._id}
-                                appliedJob={appliedJob}
-                            ></AppliedJob>)
+                            appliedJobs.length !== 0 ?
+                                <div>
+                                    {appliedJobs?.map(appliedJob => <AppliedJob
+                                        key={appliedJob._id}
+                                        appliedJob={appliedJob}
+                                    ></AppliedJob>)}
+                                </div>
+                                :
+                                <div className='text-center mb-10'>
+                                    <Player
+                                        src='https://lottie.host/f81f86a2-6995-467d-86f0-b308f58dabcf/6GBm6nHMaI.json'
+                                        className="player"
+                                        loop
+                                        autoplay
+                                        style={{ height: '300px', width: '300px' }}
+                                    />
+                                    <h2 className='text-5xl font-bold'>You didn't apply any job yet</h2>
+                                </div>
                         }
                     </div>
                 </div>

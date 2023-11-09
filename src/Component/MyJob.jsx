@@ -69,15 +69,15 @@ const MyJob = ({ myJob, myJobs, setMyJobs }) => {
 
     return (
         <div>
-            <div className='grid grid-cols-12 gap-3 items-center  shadow-sm bg-slate-50'>
+            <div className='grid grid-cols-12 rounded-lg p-2.5 gap-3 items-center  shadow-sm bg-slate-50'>
 
-                <div className="col-span-2">
+                <div className="col-span-full md:col-span-2">
                     <div className="">
                         <a href=""><img src={image} alt="" className=" rounded-lg" /></a>
                     </div>
                 </div>
 
-                <div className="col-span-5">
+                <div className=" col-span-full md:col-span-5">
                     <div className="text-base font-bold px-4 py-1 bg-prim inline rounded-md">{category}</div>
                     <h3 className='text-2xl font-bold my-3'><a href="" title="">{title}</a></h3>
                     <small className=''>
@@ -86,7 +86,7 @@ const MyJob = ({ myJob, myJobs, setMyJobs }) => {
                     </small>
                 </div>
 
-                <div className="col-span-2 ">
+                <div className="col-span-full md:col-span-2 ">
                     <div className="">
                         <h4 className='text-2xl font-bold my-3'>${salaryFrom} - ${salaryTo}</h4>
                         <p className='text-lg font-medium'>Start Date: {startDate}</p>
@@ -95,7 +95,7 @@ const MyJob = ({ myJob, myJobs, setMyJobs }) => {
                     </div>
                 </div>
 
-                <div className='col-span-3  space-y-3'><Link to={`/my-jobs/${_id}`}>
+                <div className='col-span-full md:col-span-3  space-y-3'><Link to={`/my-jobs/${_id}`}>
                     <button className='btn btn- hover:bg-prim border-prim border-2 text-black  w-full'>Update</button></Link><br />
                     <button onClick={() => handleDelete(_id)} className='btn btn- hover:bg-prim border-prim border-2 text-black  w-full'>Delete</button>
                 </div>

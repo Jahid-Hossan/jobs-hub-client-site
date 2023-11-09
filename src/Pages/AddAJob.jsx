@@ -57,36 +57,34 @@ const AddAJob = () => {
                 console.log(err)
             })
 
-        console.log(
-            // name,
-            // email,
-            // category,
-            // salaryFrom,
-            // salaryTo,
-            // startDate,
-            // deadline,
-            // description,
-            // applicantNo,
-            // image,
-        )
+        // console.log(
+        // name,
+        // email,
+        // category,
+        // salaryFrom,
+        // salaryTo,
+        // startDate,
+        // deadline,
+        // description,
+        // applicantNo,
+        // image,
+        // )
     }
 
     return (
-        <div className="container mx-auto">
+        <div className="container  mx-auto">
             <div>
                 <PostAJobBanner></PostAJobBanner>
             </div>
             <div>
-                <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
-                    <div className="my-5 lg:my-10">
-                        <h2 className=' text-2xl lg:text-6xl text-center font-bold '>Job Information</h2>
+                <section className="p-6  dark:bg-gray-800 dark:text-gray-50">
+                    <div className="my-5 lg:my-10 text-center space-y-3">
+                        <h2 className=' text-3xl  lg:text-6xl  font-bold '>Job Information</h2>
+                        <p className="text-xl">Start your awesome project! Complete all fileds and submit to post a job</p>
                     </div>
                     <form onSubmit={handleAddJob} action="" className="container flex flex-col mx-auto space-y-12">
                         <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
-                            {/* <div className="space-y-2 col-span-full lg:col-span-1">
-                                <p className="font-medium">Personal Inormation</p>
-                                <p className="text-xs">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci fuga autem eum!</p>
-                            </div> */}
+
                             <div className="grid grid-cols-6 gap-4 col-span-full ">
                                 {/* name */}
                                 <div className="col-span-full sm:col-span-3">
@@ -133,7 +131,7 @@ const AddAJob = () => {
                                 <div className="col-span-full sm:col-span-1">
                                     <label className="text-sm block">Job Posting Date</label>
                                     <DatePicker className="w-full rounded-md focus:ring focus:ri focus:ri mt-1 dark:border-gray-700 dark:text-gray-900" selected={postedDate} onChange={(date) => setPostedDate(date)} />
-                                    {/* <input id="state" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" /> */}
+
                                 </div>
                                 {/* application deadline */}
                                 <div className="col-span-full sm:col-span-1">
@@ -151,15 +149,8 @@ const AddAJob = () => {
                                     <label className="text-sm">Photo Url</label>
                                     <input name="image" id="username" type="text" placeholder="Photo Url" className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" required />
                                 </div>
-                                {/* photo url */}
-                                {/* <div className="col-span-full">
-                                    <label className="text-sm">Photo Url</label>
-                                    <div className="flex items-center space-x-2">
-                                        <img src="https://source.unsplash.com/30x30/?random" alt="" className="w-10 h-10 rounded-full dark:bg-gray-500 dark:bg-gray-700" />
-                                        <button type="button" className="px-4 py-2 border rounded-md dark:border-gray-100">Change</button>
-                                    </div>
-                                </div> */}
-                                <button className="btn w-full bg-prim" type="submit">Submit</button>
+
+                                <button className="btn w-full col-span-3 bg-prim" type="submit">Submit</button>
 
                             </div>
                         </fieldset>
